@@ -1,0 +1,8 @@
+asap		test
+ast-types	test
+esprima		test
+lru-cache	test
+promise		test
+recast		test
+semver		test
+tslib		test

@@ -1,0 +1,10 @@
+version=4
+opts=\
+dversionmangle=auto,\
+filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-regenerator-$1/ \
+ https://github.com/facebook/regenerator/tags .*?([\d\.]+).tar.gz group
+
+# It is not recommended use npmregistry. Please investigate more.
+# Take a look at https://wiki.debian.org/debian/watch/
+opts="searchmode=plain,component=commoner,ctype=nodejs,pgpmode=none,filenamemangle=s/^.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-commoner-$1/" \
+ https://registry.npmjs.org/commoner https://registry.npmjs.org/commoner/-/commoner-([\d\.]+)@ARCHIVE_EXT@ group

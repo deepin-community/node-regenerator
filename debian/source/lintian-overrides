@@ -1,0 +1,5 @@
+# Uninstalled doc
+source-is-missing *docs/bundle.js*
+source-contains-browserified-javascript *docs/bundle.js*
+source-contains-prebuilt-javascript-object *docs/bundle.js*
+very-long-line-length-in-source-file *docs/bundle.js*
