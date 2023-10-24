@@ -1,15 +1,112 @@
-Source: template-repository
-Section: unknown
+Source: node-regenerator
+Section: javascript
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Yadd <yadd@debian.org>
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs (>= 0.14.15~)
+ , help2man
+ , mocha <!nocheck>
+ , node-asap <!nocheck>
+ , node-ast-types <!nocheck>
+ , node-babel7
+ , node-browserify <!nocheck>
+ , node-commander
+ , node-detective
+ , node-esprima <!nocheck>
+ , node-glob
+ , node-graceful-fs
+ , node-iconv-lite
+ , node-lru-cache <!nocheck>
+ , node-mkdirp
+ , node-private
+ , node-promise <!nocheck>
+ , node-q
+ , node-q <!nocheck>
+ , node-recast
+ , node-semver <!nocheck>
+ , node-through
+ , node-tslib <!nocheck>
+ , node-uglify-js <!nocheck>
+ , dh-nodejs
+Standards-Version: 4.6.1
+Vcs-Browser: https://salsa.debian.org/js-team/node-regenerator
+Vcs-Git: https://salsa.debian.org/js-team/node-regenerator.git
+Homepage: https://github.com/facebook/regenerator
+Testsuite: autopkgtest-pkg-nodejs
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: node-commoner
+Architecture: all
+Depends: ${misc:Depends}
+ , node-commander
+ , node-detective
+ , node-glob
+ , node-graceful-fs
+ , node-iconv-lite
+ , node-mkdirp
+ , node-private
+ , node-q
+ , node-recast
+ , nodejs:any
+Description: JavaScript transpiler to Node-compatible CommonJS
+ Commoner makes it easy to write scripts that flexibly and efficiently
+ transpile any dialect of JavaScript into a directory structure of
+ Node-compatible CommonJS module files.
+ .
+ This task is made possible by
+  1. a declarative syntax for defining how module source code should be
+     found and processed,
+  2. the use of [promises](https://github.com/kriskowal/q) to manage an
+     asynchronous build pipeline, and
+  3. never rebuilding modules that have already been built.
+ .
+ The output files can be required seamlessly by Node, or served by any
+ static file server, or bundled together using a tool such as
+ Browserify, WrapUp, or Stitch for delivery to a web browser.
+
+Package: node-regenerator
+Architecture: all
+Depends: ${misc:Depends}
+ , node-babel7
+ , node-commoner
+ , node-regenerator-runtime
+ , node-regenerator-transform
+ , node-through
+ , nodejs:any
+Description: Functional JavaScript transformator
+ node-regenerator implements a fully-functional source transformation that
+ takes the syntax for generators/`yield` from ECMAScript 2015 or ES2015
+ and Asynchronous Iteration proposal and spits out efficient JS-of-today
+ (ES5) that behaves the same way.
+
+Package: node-regenerator-runtime
+Architecture: all
+Depends: ${misc:Depends}
+Breaks: node-regenerator-runtime (<< 0.15.0~)
+Replaces: node-regenerator-runtime (<< 0.15.0~)
+Multi-Arch: foreign
+Description: Nodejs runtime for regenerator-compiled generator and async functions
+ regenerator-runtime is a standalone runtime for regenerator-compiled
+ generator and async functions.
+
+Package: node-regenerator-transform
+Architecture: all
+Depends: ${misc:Depends}
+ , node-babel-runtime (>= 7)
+Breaks: node-regenerator-transform (<< 0.15.0~)
+Replaces: node-regenerator-transform (<< 0.15.0~)
+Multi-Arch: foreign
+Description: Explode async and generator functions into a state machine
+ This library is a build dependency of babel.
+ .
+ Note: Since this package require babel to build, it is uploaded to contrib.
+
+Package: node-regenerator-preset
+Architecture: all
+Depends: ${misc:Depends}
+ , node-babel7
+ , node-regenerator-transform
+Description: Babel preset for easy use of node-regenerator
+ node-regenerator-preset provides preset for node-babel7 for easy use
+ of node-regenerator* packages.

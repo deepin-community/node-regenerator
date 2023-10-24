@@ -1,0 +1,1 @@
+help2man -N -n 'JavaScript transpiler to Node-compatible CommonJS' bin/commonize >../commonize.1

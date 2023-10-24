@@ -1,0 +1,68 @@
+Description: increase test timeout (for armel)
+Author: Yadd <yadd@debian.org>
+--- a/test/run.js
++++ b/test/run.js
+@@ -290,6 +290,7 @@
+ }
+ 
+ enqueue("mocha", [
++  "-t", "60000",
+   "--reporter", "spec",
+   "--require", "./test/runtime.js",
+   "./test/tests.es5.js",
+@@ -371,6 +372,7 @@
+ ], true);
+ 
+ enqueue("mocha", [
++  "-t", "60000",
+   "--harmony",
+   "--reporter", "spec",
+   "--require", "./test/runtime.js",
+@@ -378,6 +380,7 @@
+ ]);
+ 
+ enqueue("mocha", [
++  "-t", "60000",
+   "--harmony",
+   "--reporter", "spec",
+   "--require", "./test/runtime.js",
+@@ -386,6 +389,7 @@
+ 
+ if (semver.gte(process.version, "6.0.0")) {
+   enqueue("mocha", [
++  "-t", "60000",
+     "--harmony",
+     "--reporter", "spec",
+     "--require", "./test/runtime.js",
+@@ -393,6 +397,7 @@
+   ]);
+ }
+ enqueue("mocha", [
++  "-t", "60000",
+   "--harmony",
+   "--reporter", "spec",
+   "--require", "./test/runtime.js",
+@@ -401,6 +406,7 @@
+ 
+ if (semver.gte(process.version, "4.0.0")) {
+   enqueue("mocha", [
++  "-t", "60000",
+     "--harmony",
+     "--reporter", "spec",
+     "--require", "./test/runtime.js",
+@@ -410,6 +416,7 @@
+ 
+ if (semver.gte(process.version, "4.0.0")) {
+   enqueue("mocha", [
++  "-t", "60000",
+     "--harmony",
+     "--reporter", "spec",
+     "./test/non-writable-tostringtag-property.js",
+@@ -417,6 +424,7 @@
+ }
+ 
+ enqueue("mocha", [
++  "-t", "60000",
+   "--harmony",
+   "--reporter", "spec",
+   "./test/frozen-intrinsics.js",

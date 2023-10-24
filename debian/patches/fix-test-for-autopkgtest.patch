@@ -1,0 +1,43 @@
+Description: fix test for autopkgtest
+Author: Yadd <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2022-04-09
+
+--- a/test/tests.transform.js
++++ b/test/tests.transform.js
+@@ -256,7 +256,7 @@
+       const { ast } = require("@babel/core").transformSync(input, {
+         configFile: false,
+         ast: true,
+-        plugins: [require("../packages/transform")],
++        plugins: [require("regenerator-transform")],
+       });
+ 
+       const method = ast.program.body[0].body.body[0];
+@@ -305,7 +305,7 @@
+       assert.doesNotThrow(function() {
+         require("@babel/core").transformSync(code, {
+           configFile: false,
+-          plugins: [require("../packages/transform")],
++          plugins: [require("regenerator-transform")],
+         });
+       });
+     });
+@@ -322,7 +322,7 @@
+       const compiled = require("@babel/core").transformSync(code, {
+         configFile: false,
+         plugins: [
+-          require("../packages/transform"),
++          require("regenerator-transform"),
+           require("@babel/plugin-transform-modules-commonjs")
+         ]
+       }).code;
+@@ -342,7 +342,7 @@
+       {
+         ast: true,
+         configFile: false,
+-        plugins: [require("../packages/transform")],
++        plugins: [require("regenerator-transform")],
+       },
+     ).ast;
+   }
